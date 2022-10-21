@@ -120,7 +120,7 @@ def pregunta_04():
         analyzer= analyzer,
         lowercase= True,
         stop_words="english",
-        token_pattern=r"(?u)\b[a-zA-Z][a-zA-Z]+\b",
+        token_pattern=r"(?u)\b\w\w+\b",
         binary=True,
         max_df=1.0,
         min_df=5,
