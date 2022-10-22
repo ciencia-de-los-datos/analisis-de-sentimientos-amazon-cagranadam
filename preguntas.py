@@ -130,7 +130,7 @@ def pregunta_04():
     pipeline = Pipeline(
         steps=[
             ("CountVectorizer", countVectorizer),
-            ("bernoulliNB", BernoulliNB()),
+            ("bernoulli", BernoulliNB()),
         ],
     )
 
@@ -138,7 +138,7 @@ def pregunta_04():
     # considerar 10 valores entre 0.1 y 1.0 para el parámetro alpha de
     # BernoulliNB.
     param_grid = {
-        "bernoulliNB__alpha": np.linspace(0.1, 1.0, 10),
+        "bernoulli__alpha": np.arange(0, 1.0, 0.1),
     }
 
     # Defina una instancia de GridSearchCV con el pipeline y el diccionario de
@@ -149,7 +149,7 @@ def pregunta_04():
         cv=5,
         scoring="accuracy",
         refit= True,
-        return_train_score=False,
+        return_train_score=True,
     )
 
     # Búsque la mejor combinación de regresores
@@ -182,7 +182,7 @@ def pregunta_05():
 
     cfm_test = confusion_matrix(
         y_true=y_test,
-        y_pred=gridSearchCV.predictx(X_test),
+        y_pred=gridSearchCV.predict(X_test),
     )
 
     # Retorne la matriz de confusion de entrenamiento y prueba
